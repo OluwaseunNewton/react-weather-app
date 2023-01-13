@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FormattedDate from "./FormattedDate";
 import axios from "axios";
 import "./Weather.css";
 
@@ -9,7 +10,7 @@ export default function Weather(props) {
       ready: true,
       temperature: Math.round(response.data.temperature.current),
       wind: Math.round(response.data.wind.speed),
-      date: "Tuesday 11:00",
+      date: new Date(response.data.time * 1000),
       iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
       city: response.data.city,
       humidity: response.data.temperature.humidity,
@@ -41,7 +42,9 @@ export default function Weather(props) {
         </form>
         <h1>{weatherData.city}</h1>
         <ul>
-          <li>{weatherData.date}</li>
+          <li>
+            <FormattedDate date={weatherData.date} />
+          </li>
           <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">
@@ -67,7 +70,6 @@ export default function Weather(props) {
     );
   } else {
     const apiKey = "39te550do00a1b7f4f7ed027cbfc823a";
-
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
