@@ -10,7 +10,7 @@ export default function App() {
         <footer>
           This project was coded by{" "}
           <a
-            href="https://www.linkedin.com/in/oluwaseun-newton-m-d-mpa-3071b871/"
+            href="https://beamish-marigold-152caa.netlify.app/"
             target="-blank"
           >
             Oluwaseun Newton
